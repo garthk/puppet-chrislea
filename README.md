@@ -1,5 +1,4 @@
-Puppet module for [Chris Lea packages for Ubuntu]
-(eg. [node.js], [zeromq]). 
+Puppet module for [Chris Lea packages for Ubuntu], e.g. [node.js] and [zeromq]. 
 
 Inspired by [niallo]. 
 
