@@ -1,5 +1,5 @@
 name    'garthk-chrislea'
-version '1.0.1'
+version '1.0.2'
 author 'garthk'
 license 'Apache License, Version 2.0'
 summary 'Puppet module for Chris Lea packages for Ubuntu, e.g. Node.js and ZeroMQ.'

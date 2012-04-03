@@ -2,15 +2,23 @@ Puppet module for [Chris Lea packages for Ubuntu], e.g. [node.js] and [zeromq].
 
 Inspired by [niallo]. 
 
+## Testing:
+
+Either:
+
+* `make test` to perform a simple [smoke test]; or
+* `make vm` to create the [Vagrant] virtual machine and install Node.js.
+
+I use the latter for my own testing.
+
 ## Usage:
 
+* `apt-get update` if you have a fresh Ubuntu install, just in case
 * `cd /etc/puppet/modules`
 * `git clone git://github.com/garthk/puppet-chrislea`
 * `ln -s puppet-chrislea chris`
-* Use `chris::lea::nodejs` and other classes
-  ([details](#installingnode.js:))
-* Use `chris::lea::repo` to define your own classes
-  ([details](#installingotherpackages:))
+* Use `chris::lea::nodejs` and other classes as below
+* Use `chris::lea::repo` to define your own classes as below
 
 ### Installing Node.js:
 
@@ -63,8 +71,11 @@ To find out which repositories you need:
 * Added `g++`, `libexpat1-dev` to `nodejs`
 * Broke out `zeromq` to its own class
 * Packaged it all as a Puppet module
+* Added Vagrantfile and Makefile
 
 [Chris Lea packages for Ubuntu]: https://launchpad.net/~chris-lea
 [node.js]: https://launchpad.net/~chris-lea/+archive/node.js
 [zeromq]: https://launchpad.net/~chris-lea/+archive/zeromq
 [niallo]: https://gist.github.com/2003430
+[Vagrant]: http://vagrantup.com/
+[smoke test]: http://docs.puppetlabs.com/guides/tests_smoke.html
