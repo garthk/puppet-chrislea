@@ -1,22 +1,15 @@
-class chris::lea::python_software_properties {
-  $package = "python-software-properties"
-  package { $package:
-    ensure => installed,
-  }
-}
-
 define chris::lea::repo() {
-  include chris::lea::python_software_properties
-  exec { "chrislea-repo-added-${name}" :
-    command => "/usr/bin/add-apt-repository ppa:chris-lea/${name}",
-    creates => "/etc/apt/sources.list.d/chris-lea-${name}-${lsbdistcodename}.list",
-    require => Package[$chris::lea::python_software_properties::package],
+  include chris::lea::key
+  $aptsource = "/etc/apt/sources.list.d/chris-lea-${name}-${lsbdistcodename}.list"
+  file { $aptsource:
+    ensure  => present,
+    content => "deb http://ppa.launchpad.net/chris-lea/${name}/ubuntu ${lsbdistcodename} main\n",
   }
 
-  exec { "chrislea-repo-ready-${name}" :
+  exec { "apt-get update chrislea ${name}":
     command => "/usr/bin/apt-get update",
-    require => Exec["chrislea-repo-added-${name}"],
-    creates => "/var/lib/apt/lists/ppa.launchpad.net_chris-lea_${name}_ubuntu_dists_${lsbdistcodename}_Release",
+    require => [Exec['apt-key chrislea'], File[$aptsource]],
+    creates => "/var/lib/apt/lists/ppa.launchpad.net_chris-lea_${name}_ubuntu_dists_${lsbdistcodename}_main_binary-${architecture}_Packages",
     timeout => 3600,
   }
 }
