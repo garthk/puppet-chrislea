@@ -1,6 +1,6 @@
 class chris::lea::nodejs {
   chris::lea::repo { 'node.js': }
-  package { ["nodejs", "nodejs-dev", "npm"]:
+  package { "nodejs":
     ensure => installed,
     require => Chris::Lea::Repo['node.js'],
   }
